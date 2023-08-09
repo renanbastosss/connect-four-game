@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: arial, Helvetica, sans-serif;
+}
+
+:root {
+    --color-1: #ff698d;
+    --color-2: #fbd164;
+    --color-bg: #7945FF;
+    --color-bg-btn: #5d2cd6;
+    --color-btn-hover: #390ea7;
+    --color-bg-board: #ffffff;
+    --color-shadow: #000000;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: var(--color-bg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 560px;
+    padding: 0 20px;
+}
+
+li {
+    list-style: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 20px;
+}
+
+.btn {
+    background-color: var(--color-bg-btn);
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+.header button:hover {
+    background-color: var(--color-btn-hover);
+}
+
+.logo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.logo-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 0px var(--color-shadow);
+    border: 2px solid var(--color-shadow);
+}
+
+.logo-circle-1 {
+    background-color: var(--color-1);
+}
+
+.logo-circle-2 {
+    background-color: var(--color-2);
+}
+
+.game {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    align-content: center;
+    padding-top: 20px;
+}
+
+.player {
+    width: 130px;
+    height: 150px;
+    background-color: var(--color-bg-board);
+    border: 2px solid var(--color-shadow);
+    border-radius: 20px;
+    box-shadow: 0px 2px 0px var(--color-shadow);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.player .emoji {
+    position: absolute;
+    top: -25px;
+}
+
+.player .name {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.player .points {
+    font-size: 42px;
+}
+
+.board {
+    background-color: var(--color-bg-board);
+    border-radius: 35px;
+    border: 2px solid var(--color-shadow);
+    box-shadow: 0px 4px 0px var(--color-shadow);
+    padding: 15px 15px 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.board-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    justify-content: center;
+    gap: 10px;
+    width: 515px;
+    height: 440px;
+}
+
+.board-space {
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    border: 2px solid var(--color-shadow);
+    box-shadow: inset 0px 4px 0px var(--color-shadow);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: moveDisk 2s ease-in-out forwards;
+}
+
+@keyframes moveDisk {
+    0% {
+        top: 0;
+    } 
+    100% {
+        top: 100%;
+    }
+}
+
+.game-win::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 10px solid #ffffff;
+    position: absolute;
+}
+
+.player1-turn:hover {
+    border: 2px solid var(--color-1);
+}
+
+.player2-turn:hover {
+    border: 2px solid var(--color-2);
+}
+
+.timer {
+    width: 120px;
+    height: 100px;
+    position: absolute;
+    bottom: -60px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: flex-end;
+}
+
+.timer svg {
+    position: absolute;
+    width: 120px;
+    height: 100px;
+}
+
+.timer .svg-path {
+    fill: var(--color-1);
+}
+
+.timer-message {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 10px;
+    z-index: 1;
+}
+
+.timer-seconds {
+    font-size: 30px;
+    color: #ffffff;
+    padding: 8px;
+    margin-bottom: 10px;
+    z-index: 1;
+}
+
+.victory-message {
+    position: absolute;
+    background-color: var(--color-bg-board);
+    height: 150px;
+    width: 250px;
+    border: 2px solid var(--color-shadow);
+    border-radius: 20px;
+    box-shadow: 0px 4px 0 0 var(--color-shadow);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    bottom: -60px;
+    z-index: 10;
+}
+
+.victory-message p {
+    text-transform: uppercase;
+}
+
+.victory-message span {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.footer-bg {
+    background-color: var(--color-bg-btn);
+    width: 100%;
+    border-radius: 100px 100px 0 0;
+    position: absolute;
+    z-index: -1;
+    bottom: -30px;
+    top: 85%;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;    
+}
+
+.menu-modal {
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    border: 2px solid var(--color-shadow);
+    border-radius: 35px;
+    box-shadow: 0px 8px 0px var(--color-shadow);
+    background-color: var(--color-bg);
+}
+
+.menu button {
+    width: 300px;
+    height: 70px;
+    border: 2px solid var(--color-shadow);
+    border-radius: 20px;
+    box-shadow: 0px 4px 0px var(--color-shadow);
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.menu li:nth-child(1) button {
+    background-color: var(--color-1);
+    color: white;
+}
+
+.menu li:nth-child(2) button {
+    background-color: var(--color-2);
+}
+
+.menu li:nth-child(3) button {
+    background-color: var(--color-bg-board);
+}
